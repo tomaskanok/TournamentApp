@@ -1,0 +1,46 @@
+﻿@model TournamentApp.Models.Team
+
+@{
+    ViewBag.Title = "MyTeam";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@if (Model.Id == -1)
+{
+    <br />
+    <p>
+        Nemáte žádný tým -> @Html.ActionLink("vytvořit tým", "Create")
+    </p>
+}
+else
+{
+    <h2>@Html.DisplayFor(modelItem => Model.Name)</h2>
+
+    <p>
+        @Html.ActionLink("Edit", "Edit")
+    </p>
+
+    <h3>Zápasníci</h3>
+    <ul>
+        @foreach (var fighter in @ViewBag.Fighters)
+        {
+            <li>@fighter.UserName</li>
+        }
+    </ul>
+
+    if (ViewBag.AreWaitingFighters)
+    { 
+        <h3>Čekající na přijetí</h3>
+        <ul>
+            @foreach (var fighter in @ViewBag.WaitingFighters)
+            {
+                using (Html.BeginForm("Confirmation", "Team", new { name = fighter.UserName }))
+                {
+                    <li> @fighter.UserName <input type="submit" value="Potvrdit" class="confirm btn btn-warning"/> </li>
+                }
+            }
+        </ul>
+    }
+}
+
+

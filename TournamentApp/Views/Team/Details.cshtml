@@ -1,0 +1,30 @@
+﻿@model TournamentApp.Models.Team
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@Model.Name</h2>
+
+<p>Trenér: <strong>@Html.ActionLink(Model.Leader, (string)ViewBag.IdOfLeader, "Account/UserDetail") </strong></p>
+@if(ViewBag.IsSigned)
+{ 
+    if (!ViewBag.HaveTeam)
+    {
+        using (Html.BeginForm("AddToTeam", "Team", new { id = Model.Id }))
+        {
+            <input type="submit" value="Přidat do týmu" class="confirm btn btn-warning" />
+        }
+    }   
+}
+
+<h3>Zápasníci</h3>
+<ul>
+    @foreach (var fighter in @ViewBag.Fighters)
+    {
+        <li>@Html.ActionLink((string)fighter.UserName, (string)fighter.Id, "Account/UserDetail") </li>        
+    }
+</ul>
+
+@Html.ActionLink("Zpět do výpisu týmů", "All")

@@ -1,0 +1,10 @@
+﻿CREATE TABLE Team
+(
+ID int IDENTITY(1,1) PRIMARY KEY,
+Name varchar(255),
+Leader nvarchar(128),
+CONSTRAINT fk_Leader FOREIGN KEY (Leader) REFERENCES AspNetUsers(Id)
+);
+
+INSERT INTO Teams ( Name, Leader ) VALUES ( 'Tristar', '90b76035-425b-4d52-b818-e82e56c2228f');
+INSERT INTO Teams ( Name, Leader ) VALUES ( 'AKA', '41808556-363d-41dc-a2f3-a7a14aa1bf95');

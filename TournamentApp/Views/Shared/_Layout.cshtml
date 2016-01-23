@@ -1,0 +1,75 @@
+﻿@using System.Globalization;
+@using TournamentApp;
+@using System.Threading;
+@using TournamentApp.App_LocalResources;
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Turnaje</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/modernizr")
+    <script src="~/Scripts/everywhere.js"></script>
+    <script>
+        $(document).ready(function () {
+            $.validator.addMethod('date', function (value, element) {
+                var d = new Date();
+                return this.optional(element) || !/Invalid|NaN/.test(new Date(d.toLocaleDateString(value)));
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Turnaje", "Index", "Home", null, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink(Resource.news, "Index", "Home")</li>
+                    <li>@Html.ActionLink(Resource.info, "Info", "Home")</li>
+                    <li>@Html.ActionLink(Resource.tournaments, "Index", "Tournament")</li>
+                    <li>@Html.ActionLink(Resource.teams, "All", "Team")</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li>@Html.ActionLink(Resource.myTournaments, "MyTournaments", "Tournament")</li>
+                        <li>@Html.ActionLink(Resource.myTeam, "MyTeam", "Team")</li>
+                    }
+                </ul>
+                <ul class="nav navbar-nav">
+                    @{
+                        <li>
+                            <a href="~/Home/Language?cultureCode=cs-CZ" title="Czech">
+                                <img src="~/images/cz.gif" alt="Czech" />
+                            </a>
+                        </li>
+                        <li>
+                            <a href="~/Home/Language?cultureCode=en-GB" title="English">
+                                <img src="~/images/en.gif" alt="English" />
+                            </a>
+                        </li>
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; @DateTime.Now.Year - Aplikace pro turnaje</p>
+        </footer>
+    </div>
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,18 @@
+﻿@model IEnumerable<TournamentApp.Models.Team>
+
+@using TournamentApp.Models;
+
+@{
+    ViewBag.Title = "Všechny týmy";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Všechny týmy</h2>
+
+<ul>
+    @foreach (Team team in @Model)
+    {
+        <li>@Html.ActionLink(team.Name, "Details", new {id = team.Id})</li>
+    }
+</ul>
+

@@ -1,0 +1,103 @@
+﻿@model IEnumerable<TournamentApp.Models.TournamentWithLoggedUser>
+
+@{
+    ViewBag.Title = "Turnaje";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Turnaje</h2>
+
+@if (Request.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Vytvořit nový turnaj", "Create")
+    </p>
+}
+
+<div class="table-responsive">
+    <table class="table table-striped">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Web)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prize)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndReg)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndDate)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Location)
+                </td>
+                <td>
+                    @if (item.Web != null)
+                    {
+                        if (((String)@item.Web).Contains("http://"))
+                        {
+                            string web = (String)@item.Web;
+                            web = web.Substring(7, web.Length - 7);
+                            <a href="@item.Web" target="_blank">@web</a>
+                        }
+                        else
+                        {
+                            <a href="http://@item.Web" target="_blank">@item.Web</a>
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prize)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndReg)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndDate)
+                </td>
+                <td>
+                    @{string urlDetail = "/Tournament/Details/" + item.Id;
+                    <a href="@urlDetail" type="button" class="btn btn-info btn-xs">Detaily</a>
+                    }
+
+                    @if (ViewBag.Signed != null)
+                    {
+                        if (item.IsRegistered)
+                        {
+                            @Html.Raw(" | ")
+                            <img src="~/images/Success-icon.png" data-toggle="tooltip" data-placement="right" title="jste přihlášen" />
+                        } else
+                        {
+                            @Html.Raw(" | ")
+                            string urlReg = "/Tournament/Details/" + item.Id + "#registration";
+                            <a href="@urlReg" type="button" class="btn btn-success btn-xs">Přihlásit</a>
+                        }
+                    }
+
+</td>
+            </tr>
+        }
+    </table>
+</div>

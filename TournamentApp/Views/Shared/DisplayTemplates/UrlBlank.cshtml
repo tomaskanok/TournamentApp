@@ -1,0 +1,10 @@
+﻿<a href=@ViewData.Model target="_blank">
+    @if (((String)@ViewData.Model).Contains("http://"))
+    {
+        string model = (String)@ViewData.Model;
+        model = model.Substring(7, model.Length-7);
+        @ViewData.Model = model;
+    }
+
+    @ViewData.Model
+</a>
