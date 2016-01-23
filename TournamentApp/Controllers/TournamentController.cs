@@ -103,6 +103,9 @@ namespace TournamentApp.Controllers
             ViewBag.Groups = tournamentGroups;
 
             List<UsersInTournamentGroup> allUsersInTournament = AllUsersInTournament(tournament.Id, tournamentGroups);
+
+            allUsersInTournament.Sort();
+
             ViewBag.AllUsersInTournament = allUsersInTournament;
 
             SelectList selectList = new SelectList(GetItemsForDropDownList(tournamentGroups), "Value", "Text");
@@ -122,6 +125,7 @@ namespace TournamentApp.Controllers
 
             var allUsers = new ApplicationDbContext();
             List<UsersInTournamentGroup> allUsersInTournament = new List<UsersInTournamentGroup>();
+
             foreach (var group in tournamentGroups)
             {
                 List<ApplicationUser> usersInGroup = new List<ApplicationUser>();
