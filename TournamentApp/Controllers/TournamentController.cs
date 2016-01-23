@@ -110,6 +110,8 @@ namespace TournamentApp.Controllers
 
             ViewBag.InTournament = CurrentUserInTournament(tournament.Id, currentUser);
 
+            ViewBag.IsAdmin = (currentUser == tournament.OrganizerId) ? true : false;
+
             return View(tournament);
         }
 

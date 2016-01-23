@@ -4,124 +4,152 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Name @if (ViewBag.InTournament){<img src="~/images/Success-icon.png" data-toggle="tooltip" data-placement="right" title="jste přihlášen do tohoto turnaje" />}</h2>
+<div class="row">
+    <div class="col-md-8">
+        <h2>
+            @Model.Name @if (ViewBag.InTournament)
+            {<img src="~/images/Success-icon.png" data-toggle="tooltip" data-placement="right" title="jste přihlášen do tohoto turnaje" />}
+        </h2>
 
-<div>
-    <dl class="">
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
+        <div>
+            <dl class="">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Location)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Location)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Web)
-        </dt>
-      
-        <dd>
-            @if (((String)@Model.Web).Contains("http://") )
+                <dt>
+                    @Html.DisplayNameFor(model => model.Web)
+                </dt>
+
+                <dd>
+                    @if (((String)@Model.Web).Contains("http://"))
             {
                 string web = @Model.Web;
                 web = web.Substring(7, web.Length - 7);
-                <a href="http://@web" target="_blank">@web</a>
-            }
-            else
-            {
-                string web = @Model.Web;
-                <a href="http://@web" target="_blank">@web</a>
-            }
-        </dd>
+                        <a href="http://@web" target="_blank">@web</a>
+                    }
+                    else
+                    {
+                        string web = @Model.Web;
+                        <a href="http://@web" target="_blank">@web</a>
+                    }
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Prize)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Prize)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Prize)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Prize)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Info)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Info)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Info)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.Info)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartReg)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.StartReg)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StartReg)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.StartReg)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EndReg)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EndReg)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EndReg)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.EndReg)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.StartDate)
+                </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
+                <dt>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
+                <dd>
+                    @Html.DisplayFor(model => model.EndDate)
+                </dd>
 
-    </dl>
-</div>
+            </dl>
+        </div>
 
-<h3>Začátečníci muži</h3>
-@foreach (var group in ViewBag.allUsersInTournament)
-{
-    if (group.Belt == "white" && group.SexMale == true)
-    {
-        <h4>@group.WeightKg Kg <span class="badge">@group.RegistredUsers.Count</span></h4>
-        foreach (var user in @group.RegistredUsers)
+        <h3>Začátečníci muži</h3>
+        @foreach (var group in ViewBag.allUsersInTournament)
         {
-            <p>@user.UserName</p>
+            if (group.Belt == "white" && group.SexMale == true)
+            {
+                <h4>@group.WeightKg Kg <span class="badge">@group.RegistredUsers.Count</span></h4>
+                foreach (var user in @group.RegistredUsers)
+                {
+                    <p>@user.UserName</p>
+                }
+            }
         }
-    }
-}
 
-@if (ViewBag.InTournament)
-{
-    <p>Jste zaregistrovaný do turnaje.</p>
-}
-else
-{
-    <h3 id="registration">Zaregistrujte se</h3>
-    using (Html.BeginForm())
-    {
-        @Html.ValidationSummary(true)
-        @Html.AntiForgeryToken()
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                @Html.Hidden("tournamentId", (Int32)@ViewBag.tournamentId)
-                @Html.DropDownList("SelectList", "Vyberte svoji váhovku")
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Registrovat se" class="btn btn-success" />
-            </div>
-        </div>
-    }
-}
+        @if (ViewBag.InTournament)
+        {
+            <p>Jste zaregistrovaný do turnaje.</p>
+        }
+        else
+        {
+            <h3 id="registration">Zaregistrujte se</h3>
+            using (Html.BeginForm())
+            {
+                @Html.ValidationSummary(true)
+                @Html.AntiForgeryToken()
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        @Html.Hidden("tournamentId", (Int32)@ViewBag.tournamentId)
+                        @Html.DropDownList("SelectList", "Vyberte svoji váhovku")
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Registrovat se" class="btn btn-success" />
+                    </div>
+                </div>
+            }
+        }
+    </div>
+    <div class="col-md-4">
 
+        @if (@ViewBag.IsAdmin)
+        {
+            <h3>Kategorie</h3>
 
-<h3>Přidat kategorii</h3>
+            foreach (var group in ViewBag.allUsersInTournament)
+            {
+                <div>
+                    <img src="~/images/Delete-icon.png" /> 
+                    @if (@group.SexMale)
+                    {
+                        <text>muz</text>
+                    }
+                    else
+                    {
+                        <text>zena</text>
+                    } - @group.Belt - @group.WeightKg 
+                </div>
+            }
+            <br />
+            <img src="~/images/Add-icon.png" />
+        }
+    </div>
+</div>

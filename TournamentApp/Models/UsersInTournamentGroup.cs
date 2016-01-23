@@ -10,6 +10,6 @@ namespace TournamentApp.Models
         public string Belt { get; set; }
         public bool SexMale { get; set; }
         public int WeightKg { get; set; }
-        public List<ApplicationUser> RegistredUsers { get; set; }
+        public List<ApplicationUser> RegistredUsers { get; set; }  
     }
 }
