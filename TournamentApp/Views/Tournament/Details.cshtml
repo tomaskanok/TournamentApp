@@ -134,10 +134,11 @@
         {
             <h3>Kategorie</h3>
 
-            foreach (var group in ViewBag.allUsersInTournament)
-            {
+            <div id="category">
+                @foreach (var group in ViewBag.allUsersInTournament)
+                {
                 <div>
-                    <img src="~/images/Delete-icon.png" /> 
+                    <img src="~/images/Delete-icon.png" />
                     @if (@group.SexMale)
                     {
                         <text>muz</text>
@@ -145,11 +146,45 @@
                     else
                     {
                         <text>zena</text>
-                    } - @group.Belt - @group.WeightKg 
+                    } - @group.Belt - @group.WeightKg
                 </div>
-            }
+                }
+            </div>
             <br />
-            <img src="~/images/Add-icon.png" />
+            <img id="btnAddGroup" src="~/images/Add-icon.png" />
+
+            <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
+            <script src="@Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
+            <script src="@Url.Content("~/Scripts/jquery.validate.unobtrusive.js")" type="text/javascript"></script>
+
+            <script src="@Url.Content("~/Scripts/addGroup.js")" type="text/javascript"></script>
+
+
+            <div id="add_group">
+                @using (Html.BeginForm())
+                {
+                    <label>
+                        Pohlaví
+                    </label>
+                    @Html.Editor("gender")
+                    <br />
+                    <label>
+                        Pásek
+                    </label>
+
+                    @Html.Editor("belt")
+                    <br />
+                    <label>
+                        Váha
+                    </label>
+                    @Html.Editor("weight")
+                    <br />
+                    <input type="submit" value="Přidat" />
+                }
+                <div id="result"></div>
+
+            </div>
         }
+
     </div>
 </div>

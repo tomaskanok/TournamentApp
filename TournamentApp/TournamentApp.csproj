@@ -189,6 +189,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TeamController.cs" />
     <Compile Include="Controllers\TournamentController.cs" />
@@ -229,6 +230,7 @@
     <Content Include="images\Delete-icon.png" />
     <Content Include="images\en.gif" />
     <Content Include="images\Success-icon.png" />
+    <Content Include="Scripts\addGroup.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ClassDiagram1.cd" />
@@ -316,6 +318,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Views\Base\" />
+    <Folder Include="Views\Group\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />

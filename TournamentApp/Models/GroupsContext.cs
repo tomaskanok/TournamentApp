@@ -18,5 +18,7 @@ namespace TournamentApp.Models
                 groupsContext.SaveChanges();
             }
         }
+
+        public System.Data.Entity.DbSet<TournamentApp.Models.Tournament> Tournaments { get; set; }
     }
 }
