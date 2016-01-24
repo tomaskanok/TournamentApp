@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using TournamentApp.Models;
 
 namespace TournamentApp.Controllers
 {
@@ -17,7 +18,16 @@ namespace TournamentApp.Controllers
         [HttpPost]
         public string AddGroup(string weight, string belt, string gender)
         {
-            return gender + " - " + belt + " - " + weight;
+            var groupContext = new GroupsContext();
+            var sexMale = gender.Equals("true") ? true : false;
+            Groups newGroup = new Groups(Int32.Parse(weight), sexMale, belt, 3);
+
+            groupContext.Groups.Add(newGroup);
+            groupContext.SaveChanges();
+
+            var gen = gender.Equals("true") ? "muz" : "zena";
+
+            return gen + " - " + belt + " - " + weight;
         }
     }
 }

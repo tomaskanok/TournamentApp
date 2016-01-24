@@ -137,21 +137,21 @@
             <div id="category">
                 @foreach (var group in ViewBag.allUsersInTournament)
                 {
-                <div>
-                    <img src="~/images/Delete-icon.png" />
-                    @if (@group.SexMale)
-                    {
-                        <text>muz</text>
-                    }
-                    else
-                    {
-                        <text>zena</text>
-                    } - @group.Belt - @group.WeightKg
-                </div>
+                    <div>
+                        <img class="deleteGroup hovercursor" src="~/images/Delete-icon.png" />
+                        @if (@group.SexMale)
+                        {
+                            <text>muz</text>
+                        }
+                        else
+                        {
+                            <text>zena</text>
+                        } - @group.Belt - @group.WeightKg
+                    </div>
                 }
             </div>
             <br />
-            <img id="btnAddGroup" src="~/images/Add-icon.png" />
+            <img id="btnAddGroup" class="hovercursor" src="~/images/Add-icon.png" />
 
             <script src="@Url.Content("~/Scripts/jquery.unobtrusive-ajax.js")" type="text/javascript"></script>
             <script src="@Url.Content("~/Scripts/jquery.validate.js")" type="text/javascript"></script>
@@ -162,17 +162,29 @@
 
             <div id="add_group">
                 @using (Html.BeginForm())
-                {
+                    {
                     <label>
                         Pohlaví
                     </label>
-                    @Html.Editor("gender")
+                    @Html.DropDownList("ddlGender", new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Muž", Value = "true" },
+                        new SelectListItem { Text = "Žena", Value = "false" }
+
+                    }, "Vyber pohlaví")
                     <br />
                     <label>
                         Pásek
                     </label>
+                    @Html.DropDownList("ddlBelt", new List<SelectListItem>
+                    {
+                        new SelectListItem { Text = "Bílý", Value = "white" },
+                        new SelectListItem { Text = "Modrý", Value = "blue" },
+                        new SelectListItem { Text = "Fialový", Value = "purple" },
+                        new SelectListItem { Text = "Hnědý", Value = "brown" },
+                        new SelectListItem { Text = "Černý", Value = "black" }
 
-                    @Html.Editor("belt")
+                    }, "Vyber pásek")
                     <br />
                     <label>
                         Váha

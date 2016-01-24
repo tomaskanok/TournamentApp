@@ -196,6 +196,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="GlobalProps.cs" />
     <Compile Include="Migrations\201511241021153_asd.cs" />
     <Compile Include="Migrations\201511241021153_asd.Designer.cs">
       <DependentUpon>201511241021153_asd.cs</DependentUpon>

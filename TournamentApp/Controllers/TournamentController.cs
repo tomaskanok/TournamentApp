@@ -99,7 +99,7 @@ namespace TournamentApp.Controllers
             var currentUser = User.Identity.GetUserId();
 
             var groupsContext = new GroupsContext();
-            var tournamentGroups = groupsContext.Groups.Where(g => g.IdTournament == tournament.Id && g.SexMale == true).ToList();
+            var tournamentGroups = groupsContext.Groups.Where(g => g.IdTournament == tournament.Id).ToList();
             ViewBag.Groups = tournamentGroups;
 
             List<UsersInTournamentGroup> allUsersInTournament = AllUsersInTournament(tournament.Id, tournamentGroups);

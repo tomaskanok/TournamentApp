@@ -16,5 +16,17 @@ namespace TournamentApp.Models
         [ForeignKey("Tournaments")]
         public virtual int? IdTournament { get; set; }
         public virtual Tournament Tournaments { get; set; }
+
+        public Groups()
+        {
+        }
+
+        public Groups (int weight, bool sexMale, string belt, int IdTournament)
+        {
+            WeightKg = weight;
+            SexMale = sexMale;
+            Belt = belt;
+            this.IdTournament = IdTournament;
+        }
     }
 }

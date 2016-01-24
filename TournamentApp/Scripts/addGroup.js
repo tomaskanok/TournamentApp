@@ -7,9 +7,11 @@ $(document).ready(function () {
         
         if ($(this).valid()) {
             
-            var gender = $("#gender").val();
-            var belt = $("#belt").val();
+            var gender = $("#ddlGender option:selected").val();
+            var belt = $("#ddlBelt option:selected").val();
             var weight = $("#weight").val();
+
+            alert(gender + belt + weight);
 
             $.ajax({
                 url: '/Group/AddGroup',
@@ -21,7 +23,7 @@ $(document).ready(function () {
                 },
                 success: function (result) {
                     var currentText = $("#category").html();
-                    currentText += "<div><img src=\"/images/Delete-icon.png\" /> " + result + "</div>";
+                    currentText += "<div><img class=\"deleteGroup hovercursor\" src=\"/images/Delete-icon.png\" /> " + result + "</div>";
                     $("#category").html (currentText);
                 }
             });
