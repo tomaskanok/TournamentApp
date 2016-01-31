@@ -90,14 +90,14 @@
             </dl>
         </div>
 
-        <h2>Registrace</h2>
+        <h3>Registrace</h3>
 
-        <h3>Bílé pásky - muži</h3>
+        <h4>Bílé pásky - muži</h4>
         @foreach (var group in ViewBag.allUsersInTournament)
         {
             if (group.Belt == "white" && group.SexMale == true)
             {
-                <h4>@group.WeightKg Kg <span class="badge">@group.RegistredUsers.Count</span></h4>
+                <h5>@group.WeightKg Kg <span class="badge">@group.RegistredUsers.Count</span></h5>
                 foreach (var user in @group.RegistredUsers)
                 {
                     <p>@user.UserName</p>

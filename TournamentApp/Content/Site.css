@@ -62,6 +62,14 @@ input[type="checkbox"].input-validation-error {
 dt {
     margin-top: 5px;
 }
+
+h4, h5 {
+    font-weight: bold;
+}
+
+h5{
+    margin-bottom: 0px;
+}
 /*
 .green:link, .green:visited {
     color: #009933;
