@@ -68,44 +68,34 @@ namespace TournamentApp.Controllers
                 UpdateModel(registrationsContext);
             }
 
-            /*TODO dolu - stejne jako v get Details*/
-            var tournamentsContext = new TournamentsContext();
-            var tournament = tournamentsContext.Tournament.Single(t => t.Id == tournamentId);
-            ViewBag.tournamentId = tournament.Id;
-
-            var groupsContext = new GroupsContext();
-            var tournamentGroups = groupsContext.Groups.Where(g => g.IdTournament == tournament.Id && g.SexMale == true).ToList();
-            ViewBag.Groups = tournamentGroups;
-
-            List<UsersInTournamentGroup> allUsersInTournament = AllUsersInTournament(tournament.Id, tournamentGroups);
-            ViewBag.AllUsersInTournament = allUsersInTournament;
-
-            SelectList selectList = new SelectList(GetItemsForDropDownList(tournamentGroups), "Value", "Text");
-            ViewBag.SelectList = selectList;
-
-            ViewBag.InTournament = CurrentUserInTournament(tournament.Id, currentUser);
-            /*TODO nahoru - stejne jako v get Details*/
+            var tournament = ForDetails(currentUser, tournamentId);
 
             return View(tournament);
         }
 
+
         [AllowAnonymous]
         public ActionResult Details(int id)
         {
-            var tournamentsContext = new TournamentsContext();
-            var tournament = tournamentsContext.Tournament.Single(t => t.Id == id);
-            ViewBag.tournamentId = tournament.Id;
-
             var currentUser = User.Identity.GetUserId();
+
+            var tournament = ForDetails(currentUser, id);
+
+            return View(tournament);
+        }
+
+        private Tournament ForDetails(string currentUser, int tournamentId)
+        {
+            var tournamentsContext = new TournamentsContext();
+            var tournament = tournamentsContext.Tournament.Single(t => t.Id == tournamentId);
+            ViewBag.tournamentId = tournament.Id;
 
             var groupsContext = new GroupsContext();
             var tournamentGroups = groupsContext.Groups.Where(g => g.IdTournament == tournament.Id).ToList();
             ViewBag.Groups = tournamentGroups;
 
             List<UsersInTournamentGroup> allUsersInTournament = AllUsersInTournament(tournament.Id, tournamentGroups);
-
             allUsersInTournament.Sort();
-
             ViewBag.AllUsersInTournament = allUsersInTournament;
 
             SelectList selectList = new SelectList(GetItemsForDropDownList(tournamentGroups), "Value", "Text");
@@ -115,7 +105,7 @@ namespace TournamentApp.Controllers
 
             ViewBag.IsAdmin = (currentUser == tournament.OrganizerId) ? true : false;
 
-            return View(tournament);
+            return tournament;
         }
 
         private List<UsersInTournamentGroup> AllUsersInTournament( int tournamentId, List<Groups> tournamentGroups)
