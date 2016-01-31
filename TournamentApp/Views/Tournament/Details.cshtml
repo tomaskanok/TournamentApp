@@ -27,9 +27,9 @@
 
                 <dd>
                     @if (((String)@Model.Web).Contains("http://"))
-            {
-                string web = @Model.Web;
-                web = web.Substring(7, web.Length - 7);
+                    {
+                        string web = @Model.Web;
+                        web = web.Substring(7, web.Length - 7);
                         <a href="http://@web" target="_blank">@web</a>
                     }
                     else
@@ -90,14 +90,20 @@
             </dl>
         </div>
 
-        <h3>Registrace</h3>
+        @{bool first; }
 
-        <h4>Bílé pásky - muži</h4>
+        @{first = true;}
         @foreach (var group in ViewBag.allUsersInTournament)
         {
+            if (first)
+            {
+                first = false;
+                <h4>Bílé pásky - muži</h4>
+            }
+
             if (group.Belt == "white" && group.SexMale == true)
             {
-                <h5>@group.WeightKg Kg <span class="badge">@group.RegistredUsers.Count</span></h5>
+                <h3>@group.WeightKg Kg <span class="badge">@group.RegistredUsers.Count</span></h3>
                 foreach (var user in @group.RegistredUsers)
                 {
                     <p>@user.UserName</p>
@@ -105,11 +111,17 @@
             }
         }
 
-        <h3>Modré pásky - muži</h3>
+        @{first = true; }        
         @foreach (var group in ViewBag.allUsersInTournament)
         {
             if (group.Belt == "blue" && group.SexMale == true)
             {
+                if (first)
+                {
+                    first = false;
+                    <h3>Modré pásky - muži</h3>
+                }
+
                 <h4>@group.WeightKg Kg <span class="badge">@group.RegistredUsers.Count</span></h4>
                 foreach (var user in @group.RegistredUsers)
                 {
@@ -118,11 +130,17 @@
             }
         }
 
-        <h3>Fialové pásky - muži</h3>
+        @{first = true;}
         @foreach (var group in ViewBag.allUsersInTournament)
         {
             if (group.Belt == "purple" && group.SexMale == true)
             {
+                if (first)
+                {
+                    first = false;
+                    <h3>Fialové pásky - muži</h3>
+                }
+
                 <h4>@group.WeightKg Kg <span class="badge">@group.RegistredUsers.Count</span></h4>
                 foreach (var user in @group.RegistredUsers)
                 {
@@ -131,11 +149,17 @@
             }
         }
 
-        <h3>Hnědé pásky - muži</h3>
+        @{first = true;}
         @foreach (var group in ViewBag.allUsersInTournament)
         {
             if (group.Belt == "brown" && group.SexMale == true)
             {
+                if (first)
+                {
+                    first = false;
+                    <h3>Hnědé pásky - muži</h3>
+                }
+
                 <h4>@group.WeightKg Kg <span class="badge">@group.RegistredUsers.Count</span></h4>
                 foreach (var user in @group.RegistredUsers)
                 {
@@ -144,11 +168,17 @@
             }
         }
 
-        <h3>Černé pásky - muži</h3>
+
+        @{first = true;}
         @foreach (var group in ViewBag.allUsersInTournament)
         {
             if (group.Belt == "black" && group.SexMale == true)
             {
+                if (first)
+                {
+                    first = false;
+                    <h3>Černé pásky - muži</h3>
+                }
                 <h4>@group.WeightKg Kg <span class="badge">@group.RegistredUsers.Count</span></h4>
                 foreach (var user in @group.RegistredUsers)
                 {
@@ -157,12 +187,17 @@
             }
         }
 
-
-        <h3>Bílé pásky - ženy</h3>
+        @{first = true;}
         @foreach (var group in ViewBag.allUsersInTournament)
         {
             if (group.Belt == "white" && group.SexMale == false)
             {
+                if (first)
+                {
+                    first = false;
+                    <h3>Bílé pásky - ženy</h3>
+                }
+
                 <h4>@group.WeightKg Kg <span class="badge">@group.RegistredUsers.Count</span></h4>
                 foreach (var user in @group.RegistredUsers)
                 {
@@ -171,11 +206,16 @@
             }
         }
 
-        <h3>Modré pásky - ženy</h3>
+        @{first = true;}
         @foreach (var group in ViewBag.allUsersInTournament)
         {
             if (group.Belt == "blue" && group.SexMale == false)
             {
+                if (first)
+                {
+                    first = false;
+                    <h3>Modré pásky - ženy</h3>
+                }
                 <h4>@group.WeightKg Kg <span class="badge">@group.RegistredUsers.Count</span></h4>
                 foreach (var user in @group.RegistredUsers)
                 {
@@ -184,11 +224,17 @@
             }
         }
 
-        <h3>Fialové pásky - ženy</h3>
+        @{first = true;}
         @foreach (var group in ViewBag.allUsersInTournament)
         {
             if (group.Belt == "purple" && group.SexMale == false)
             {
+                if (first)
+                {
+                    first = false;
+                    <h3>Fialové pásky - ženy</h3>
+                }
+
                 <h4>@group.WeightKg Kg <span class="badge">@group.RegistredUsers.Count</span></h4>
                 foreach (var user in @group.RegistredUsers)
                 {
@@ -197,11 +243,17 @@
             }
         }
 
-        <h3>Hnědé pásky - ženy</h3>
+        @{first = true; }        
         @foreach (var group in ViewBag.allUsersInTournament)
         {
             if (group.Belt == "brown" && group.SexMale == false)
             {
+                if (first)
+                {
+                    first = false;
+                    <h3>Hnědé pásky - ženy</h3>
+                }
+
                 <h4>@group.WeightKg Kg <span class="badge">@group.RegistredUsers.Count</span></h4>
                 foreach (var user in @group.RegistredUsers)
                 {
@@ -210,11 +262,17 @@
             }
         }
 
-        <h3>Černé pásky - ženy</h3>
+        @{first = true;}
         @foreach (var group in ViewBag.allUsersInTournament)
         {
             if (group.Belt == "black" && group.SexMale == false)
             {
+                if (first)
+                {
+                    first = false;
+                    <h3>Černé pásky - ženy</h3>
+                }
+
                 <h4>@group.WeightKg Kg <span class="badge">@group.RegistredUsers.Count</span></h4>
                 foreach (var user in @group.RegistredUsers)
                 {
