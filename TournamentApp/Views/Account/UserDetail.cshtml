@@ -7,53 +7,78 @@
 <h2>@Model.UserName</h2>
 
 <div>
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Team.Name)
-        </dt>
+    <dl class="dl-vertical">
+        @if (Model.InTeam != null)
+        {
+            <dt>
+                Tým
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Team.Name)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Team.Name)
+            </dd>
+        }
 
         <dt>
             @Html.DisplayNameFor(model => model.SexMale)
         </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.SexMale)
-        </dd>
+        @if (@Model.SexMale == true)
+        {
+        <dd>Muž</dd>
+        }
+        else if (@Model.SexMale == false)
+        {
+            <dd>
+                Žena
+            </dd>
+        }
+        else
+        {
+            <dd>Nezadáno</dd>
+        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Weight)
-        </dt>
+        @if (Model.PhoneNumber != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Weight)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Weight)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Weight)
+            </dd>
+        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Country)
-        </dt>
+        @if (Model.Country != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Country)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Country)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Country)
+            </dd>
+        }
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+        @if (Model.Email != null)
+        {
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+        }
+        @if (Model.PhoneNumber != null)
+        { 
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
+        }
     </dl>
 </div>
