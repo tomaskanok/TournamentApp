@@ -13,13 +13,16 @@ namespace TournamentApp.Models
     {
         [DisplayName("Pohlaví")]
         public bool? SexMale { get; set; }
+
         [DisplayName("Váha")]
         public int? Weight { get; set; }
+
         [DisplayName("Země")]
         public string Country { get; set; }
 
         [ForeignKey("Team")]
         public virtual int? InTeam { get; set; }
+
         public virtual Team Team { get; set; }
 
         [DisplayName("Tým potvrzen")]

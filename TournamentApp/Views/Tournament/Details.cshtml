@@ -95,23 +95,30 @@
         @{first = true;}
         @foreach (var group in ViewBag.allUsersInTournament)
         {
-            if (first)
-            {
-                first = false;
-                <h4>Bílé pásky - muži</h4>
-            }
 
             if (group.Belt == "white" && group.SexMale == true)
             {
-                <h3>@group.WeightKg Kg <span class="badge">@group.RegistredUsers.Count</span></h3>
-                foreach (var user in @group.RegistredUsers)
+                if (first)
                 {
-                    <p>@user.UserName</p>
+                    first = false;
+                    <h3>Bílé pásky - muži</h3>
                 }
+
+                <h4>@group.WeightKg Kg <span class="badge">@group.RegistredUsers.Count</span></h4>
+                <table class="table table-striped">
+                    @foreach (var user in @group.RegistredUsers)
+                    {
+                        <tr>
+                            <td>@user.UserName</td>
+                            <td>@if (@user.TeamConfirmed) {@user.Team}</td>
+                            <td>@user.Country</td>
+                        </tr>
+                    }
+                </table>
             }
         }
 
-        @{first = true; }        
+        @{first = true; }
         @foreach (var group in ViewBag.allUsersInTournament)
         {
             if (group.Belt == "blue" && group.SexMale == true)
@@ -123,10 +130,14 @@
                 }
 
                 <h4>@group.WeightKg Kg <span class="badge">@group.RegistredUsers.Count</span></h4>
-                foreach (var user in @group.RegistredUsers)
-                {
-                    <p>@user.UserName</p>
-                }
+                <table class="table table-striped">
+                    @foreach (var user in @group.RegistredUsers)
+                    {
+                        <tr>
+                            <td>@user.UserName</td><td>@user.Team</td><td>@user.Country</td>
+                        </tr>
+                    }
+                </table>
             }
         }
 
@@ -243,7 +254,7 @@
             }
         }
 
-        @{first = true; }        
+        @{first = true; }
         @foreach (var group in ViewBag.allUsersInTournament)
         {
             if (group.Belt == "brown" && group.SexMale == false)
@@ -310,7 +321,7 @@
     @* ADMINISTRATION *@
     <div class="col-md-4">
         @if (@ViewBag.IsAdmin)
-        {    
+        {
             <h3>Kategorie</h3>
 
             <div id="category">
@@ -341,7 +352,7 @@
 
             <div id="add_group">
                 @using (Html.BeginForm())
-                    {
+                {
                     <label>
                         Pohlaví
                     </label>
