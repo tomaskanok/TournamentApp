@@ -339,6 +339,44 @@ namespace TournamentApp.Controllers
             return View(user);
         }
 
+        public ActionResult Edit()
+        {
+            var user = UserManager.FindById(User.Identity.GetUserId());
+            return View(user);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(ApplicationUser user)
+        {
+            var currentUser = GetCurrentUser();
+            currentUser.SexMale = user.SexMale;
+
+            using (var usersDB = new ApplicationDbContext())
+            {
+                UpdateModel(currentUser, new string[] { "SexMale" });
+
+                usersDB.EditApplicationUser(currentUser, usersDB);
+            }
+
+            currentUser = GetCurrentUser();
+
+
+            //return View("MyProfile", currentUser); // melo by byt tohle ale chyba dispose database
+            return View();
+        }
+
+        private ApplicationUser GetCurrentUser()
+        {
+            string idUser = User.Identity.GetUserId();
+            ApplicationUser currentUser;
+            using (var dbUser = new ApplicationDbContext())
+            {
+                currentUser = dbUser.Users.SingleOrDefault(u => u.Id == idUser);
+            }
+
+            return currentUser;
+        }
+
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";

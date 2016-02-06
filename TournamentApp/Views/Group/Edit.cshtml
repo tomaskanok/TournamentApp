@@ -1,0 +1,61 @@
+﻿@model TournamentApp.Models.Groups
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Groups</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WeightKg, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.WeightKg)
+                @Html.ValidationMessageFor(model => model.WeightKg)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SexMale, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.SexMale)
+                @Html.ValidationMessageFor(model => model.SexMale)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Belt, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Belt)
+                @Html.ValidationMessageFor(model => model.Belt)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IdTournament, "IdTournament", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("IdTournament", String.Empty)
+                @Html.ValidationMessageFor(model => model.IdTournament)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

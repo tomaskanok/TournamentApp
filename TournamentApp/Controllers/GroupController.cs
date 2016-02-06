@@ -29,5 +29,14 @@ namespace TournamentApp.Controllers
 
             return gen + " - " + belt + " - " + weight;
         }
+
+        [HttpGet]
+        public ActionResult Edit()
+        {
+            var groups = new GroupsContext();
+            Groups group = groups.Groups.ToList().First(x => x.SexMale = true);
+
+            return View(group);
+        }
     }
 }
