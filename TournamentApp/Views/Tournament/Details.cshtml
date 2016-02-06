@@ -109,7 +109,7 @@
                     @foreach (var user in @group.RegistredUsers)
                     {
                         <tr>
-                            <td>@user.UserName</td>
+                            <td>@Html.ActionLink((string)@user.UserName, (string)@user.Id, "Account/UserDetail")</td>
                             <td>@if (@user.TeamConfirmed) {@user.Team}</td>
                             <td>@user.Country</td>
                         </tr>
