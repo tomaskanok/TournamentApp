@@ -103,6 +103,10 @@ namespace TournamentApp.Controllers
 
             ViewBag.InTournament = CurrentUserInTournament(tournament.Id, currentUser);
 
+            var registrationContext = new RegistrationContext();
+            var reg = registrationContext.Registration.Single(r => r.UserId == currentUser && r.TournamentId == tournamentId);
+            ViewBag.Paid = reg.Paid;
+
             ViewBag.IsAdmin = (currentUser == tournament.OrganizerId) ? true : false;
 
             return tournament;

@@ -8,7 +8,13 @@
     <div class="col-md-8">
         <h2>
             @Model.Name @if (ViewBag.InTournament)
-            {<img src="~/images/Success-icon.png" data-toggle="tooltip" data-placement="right" title="jste přihlášen do tohoto turnaje" />}
+            {
+                <img src="~/images/Success-icon.png" data-toggle="tooltip" data-placement="right" title="jste přihlášen do tohoto turnaje" />
+                if (!ViewBag.Paid)
+                {
+                    <img src="~/images/Warning-icon.png" data-toggle="tooltip" data-placement="right" title="registrační poplatek nezaplacen" />
+                }
+            }
         </h2>
 
         <div>
