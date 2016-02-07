@@ -231,6 +231,7 @@
     <Content Include="images\Delete-icon.png" />
     <Content Include="images\en.gif" />
     <Content Include="images\Success-icon.png" />
+    <Content Include="images\Warning-icon.png" />
     <Content Include="Scripts\addGroup.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

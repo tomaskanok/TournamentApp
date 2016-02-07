@@ -16,8 +16,8 @@ namespace TournamentApp.Controllers
         {
             string user = User.Identity.GetUserId();
             var tournaments = new TournamentsContext();
-            List<TournamentWithLoggedUser> listOfTournaments = 
-                tournaments.Database.SqlQuery<TournamentWithLoggedUser>("TournamentsWithLoggedUser @User", new SqlParameter("User", (user != null) ? user : "")).ToList();
+            List<TournamentWithUserInfo> listOfTournaments = 
+                tournaments.Database.SqlQuery<TournamentWithUserInfo>("TournamentsWithUserInfo @User", new SqlParameter("User", (user != null) ? user : "")).ToList();
             //List<Tournament> listOfTournaments = tournaments.Tournament.ToList();
 
             ViewBag.Signed = User.Identity.GetUserId();

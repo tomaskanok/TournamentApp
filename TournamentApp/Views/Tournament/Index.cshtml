@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TournamentApp.Models.TournamentWithLoggedUser>
+﻿@model IEnumerable<TournamentApp.Models.TournamentWithUserInfo>
 
 @{
     ViewBag.Title = "Turnaje";
@@ -88,7 +88,11 @@
                         {
                             @Html.Raw(" | ")
                             <img src="~/images/Success-icon.png" data-toggle="tooltip" data-placement="right" title="jste přihlášen" />
-                        } else
+                            if (!item.Paid) {
+                            <img src="~/images/Warning-icon.png" data-toggle="tooltip" data-placement="right" title="registrační poplatek nezaplacen" />
+                            }
+                        }
+                        else
                         {
                             @Html.Raw(" | ")
                             string urlReg = "/Tournament/Details/" + item.Id + "#registration";

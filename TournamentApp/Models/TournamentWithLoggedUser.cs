@@ -7,8 +7,9 @@ using System.Web;
 namespace TournamentApp.Models
 {
     [NotMapped]
-    public class TournamentWithLoggedUser : Tournament
+    public class TournamentWithUserInfo : Tournament
     {
         public bool IsRegistered { get; set; }
+        public bool Paid { get; set; }
     }
 }
