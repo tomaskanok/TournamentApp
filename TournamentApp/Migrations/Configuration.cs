@@ -2,14 +2,14 @@ namespace TournamentApp.Migrations
 {
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<TournamentApp.Models.RegistrationContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<TournamentApp.Models.FightsContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(TournamentApp.Models.RegistrationContext context)
+        protected override void Seed(TournamentApp.Models.FightsContext context)
         {
             //  This method will be called after migrating to the latest version.
 

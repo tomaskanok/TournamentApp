@@ -7,13 +7,13 @@ namespace TournamentApp.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class asd : IMigrationMetadata
+    public sealed partial class AddFightTbl : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(asd));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddFightTbl));
         
         string IMigrationMetadata.Id
         {
-            get { return "201511241021153_asd"; }
+            get { return "201602221832354_AddFightTbl"; }
         }
         
         string IMigrationMetadata.Source
