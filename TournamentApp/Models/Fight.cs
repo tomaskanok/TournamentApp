@@ -36,11 +36,10 @@ namespace TournamentApp.Models
         [ForeignKey("ApplicationUserFighterSecond")]
         public virtual string FighterSecond { get; set; }
         public virtual ApplicationUser ApplicationUserFighterSecond { get; set; }
-
-        /*
+        
         [ForeignKey("RootFight")]
-        public virtual string RootFightId { get; set; }
+        public virtual int? RootFightId { get; set; }
         public virtual Fight RootFight { get; set; }
-        */
+        
     }
 }

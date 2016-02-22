@@ -205,6 +205,10 @@
     <Compile Include="Migrations\201602221854121_NullsForFightTbl.Designer.cs">
       <DependentUpon>201602221854121_NullsForFightTbl.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602221911180_RootForFightTbl.cs" />
+    <Compile Include="Migrations\201602221911180_RootForFightTbl.Designer.cs">
+      <DependentUpon>201602221911180_RootForFightTbl.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Fight.cs" />
@@ -212,6 +216,7 @@
     <Compile Include="Models\Groups.cs" />
     <Compile Include="Models\GroupsContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\MakeDraw.cs" />
     <Compile Include="Models\Registration.cs" />
     <Compile Include="Models\RegistrationContext.cs" />
     <Compile Include="Models\TournamentWithLoggedUser.cs" />
@@ -327,6 +332,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602221854121_NullsForFightTbl.resx">
       <DependentUpon>201602221854121_NullsForFightTbl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602221911180_RootForFightTbl.resx">
+      <DependentUpon>201602221911180_RootForFightTbl.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
