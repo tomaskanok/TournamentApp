@@ -38,5 +38,10 @@ namespace TournamentApp.Controllers
 
             return View(group);
         }
+
+        public ActionResult Draw(int idGroup)
+        {
+            return View();
+        }
     }
 }

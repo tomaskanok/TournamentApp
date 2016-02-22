@@ -1,0 +1,66 @@
+﻿@model TournamentApp.Models.Groups
+
+@{
+    ViewBag.Title = "Draw";
+}
+
+<h2>Draw</h2>
+
+<div>
+    <h4>Groups</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Fight.Result)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Fight.Result)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tournaments.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tournaments.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.WeightKg)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.WeightKg)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SexMale)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SexMale)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Belt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Belt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ClosedRegistation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ClosedRegistation)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

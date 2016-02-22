@@ -17,6 +17,12 @@ namespace TournamentApp.Models
         public virtual int? IdTournament { get; set; }
         public virtual Tournament Tournaments { get; set; }
 
+        public bool? ClosedRegistation { get; set; }
+
+        [ForeignKey("Fight")]
+        public virtual int? IdFinalFight { get; set; }
+        public virtual Fight Fight { get; set; }
+
         public Groups()
         {
         }

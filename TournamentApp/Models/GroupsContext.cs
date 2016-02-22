@@ -20,5 +20,7 @@ namespace TournamentApp.Models
         }
 
         public System.Data.Entity.DbSet<TournamentApp.Models.Tournament> Tournaments { get; set; }
+
+        public System.Data.Entity.DbSet<TournamentApp.Models.Fight> Fights { get; set; }
     }
 }
