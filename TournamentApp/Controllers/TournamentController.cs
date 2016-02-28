@@ -132,7 +132,9 @@ namespace TournamentApp.Controllers
                     }
                 }
 
-                allUsersInTournament.Add(new UsersInTournamentGroup() { SexMale = group.SexMale, Belt = group.Belt, WeightKg = group.WeightKg, RegistredUsers = usersInGroup });
+                var stringIdGroup = group.Id.ToString();
+
+                allUsersInTournament.Add(new UsersInTournamentGroup() { SexMale = group.SexMale, Belt = group.Belt, WeightKg = group.WeightKg, RegistredUsers = usersInGroup, IdGroup = stringIdGroup });
             }
 
             return allUsersInTournament;

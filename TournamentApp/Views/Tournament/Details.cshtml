@@ -101,7 +101,8 @@
         @{first = true;}
         @foreach (var group in ViewBag.allUsersInTournament)
         {
-
+            //int id = @group.IdGroup;
+            //string idString = Convert.ToString(id);
             if (group.Belt == "white" && group.SexMale == true)
             {
                 if (first)
@@ -110,7 +111,7 @@
                     <h3>Bílé pásky - muži</h3>
                 }
 
-                <h4>@group.WeightKg Kg <span class="badge">@group.RegistredUsers.Count</span></h4> @Html.ActionLink("Show draw", (string)@group.Id, "Group/Draw")
+                <h4>@group.WeightKg Kg<span class="badge">@group.RegistredUsers.Count</span></h4> @Html.ActionLink("Show draw", (string)@group.IdGroup, "Group/Draw")
                 <table class="table table-striped">
                     @foreach (var user in @group.RegistredUsers)
                     {

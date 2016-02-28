@@ -33,15 +33,39 @@ namespace TournamentApp.Controllers
         [HttpGet]
         public ActionResult Edit()
         {
-            var groups = new GroupsContext();
-            Groups group = groups.Groups.ToList().First(x => x.SexMale = true);
+            var groupsContext = new GroupsContext();
+            Groups group = groupsContext.Groups.ToList().First(x => x.SexMale = true);
 
             return View(group);
         }
 
-        public ActionResult Draw(int idGroup)
+        public ActionResult Draw(int id)
         {
-            return View();
+            var groups = new GroupsContext();
+            Groups group = groups.Groups.Single(x => x.Id == id);
+
+            var registrationsContext = new RegistrationContext();
+            var registrations = registrationsContext.Registration.Where(r => r.GroupId == id).ToList();
+
+            List<ApplicationUser> usersInGroup = new List<ApplicationUser>();
+
+            var allUsers = new ApplicationDbContext();
+            List<UsersInTournamentGroup> allUsersInTournament = new List<UsersInTournamentGroup>();
+
+            foreach (var regs in registrations)
+            {
+                if (group.Id == regs.GroupId)
+                {
+                    usersInGroup.Add( allUsers.Users.Single(u => u.Id == regs.UserId));
+                }
+            }
+
+            if (group.IdFinalFight == null)
+            {
+
+            }
+
+            return View(group);            
         }
     }
 }
