@@ -16,7 +16,7 @@ namespace TournamentApp.Controllers
         {
             string user = User.Identity.GetUserId();
             var tournaments = new TournamentsContext();
-            List<TournamentWithUserInfo> listOfTournaments = 
+            List<TournamentWithUserInfo> listOfTournaments =
                 tournaments.Database.SqlQuery<TournamentWithUserInfo>("TournamentsWithUserInfo @User", new SqlParameter("User", (user != null) ? user : "")).ToList();
             //List<Tournament> listOfTournaments = tournaments.Tournament.ToList();
 
@@ -55,7 +55,7 @@ namespace TournamentApp.Controllers
             var currentUser = User.Identity.GetUserId();
 
             var registrationsContext = new RegistrationContext();
-            
+
             var registration = new Registration();
             registration.Paid = false;
             registration.GroupId = SelectList;
@@ -94,7 +94,7 @@ namespace TournamentApp.Controllers
             var tournamentGroups = groupsContext.Groups.Where(g => g.IdTournament == tournament.Id).ToList();
             ViewBag.Groups = tournamentGroups;
 
-            List<UsersInTournamentGroup> allUsersInTournament = AllUsersInTournament(tournament.Id, tournamentGroups);
+            List<GroupWithUsers> allUsersInTournament = AllUsersInTournament(tournament.Id, tournamentGroups);
             allUsersInTournament.Sort();
             ViewBag.AllUsersInTournament = allUsersInTournament;
 
@@ -112,29 +112,14 @@ namespace TournamentApp.Controllers
             return tournament;
         }
 
-        private List<UsersInTournamentGroup> AllUsersInTournament( int tournamentId, List<Groups> tournamentGroups)
+        private List<GroupWithUsers> AllUsersInTournament(int tournamentId, List<Groups> tournamentGroups)
         {
-            var registrationsContext = new RegistrationContext();
-            List<Registration> registrations = registrationsContext.Registration.Where(r => r.TournamentId == tournamentId).ToList();
-
-            var allUsers = new ApplicationDbContext();
-            List<UsersInTournamentGroup> allUsersInTournament = new List<UsersInTournamentGroup>();
+            List<GroupWithUsers> allUsersInTournament = new List<GroupWithUsers>();
 
             foreach (var group in tournamentGroups)
             {
-                List<ApplicationUser> usersInGroup = new List<ApplicationUser>();
 
-                foreach (var regs in registrations)
-                {
-                    if (group.Id == regs.GroupId)
-                    {
-                        usersInGroup.Add(allUsers.Users.Single(u => u.Id == regs.UserId));
-                    }
-                }
-
-                var stringIdGroup = group.Id.ToString();
-
-                allUsersInTournament.Add(new UsersInTournamentGroup() { SexMale = group.SexMale, Belt = group.Belt, WeightKg = group.WeightKg, RegistredUsers = usersInGroup, IdGroup = stringIdGroup });
+                allUsersInTournament.Add(new GroupWithUsers(group.Belt, group.SexMale, group.WeightKg, group.Id.ToString(), tournamentId));
             }
 
             return allUsersInTournament;

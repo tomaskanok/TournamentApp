@@ -227,8 +227,9 @@
     <Compile Include="Models\MakeDraw.cs" />
     <Compile Include="Models\Registration.cs" />
     <Compile Include="Models\RegistrationContext.cs" />
+    <Compile Include="Models\SimpleUser.cs" />
     <Compile Include="Models\TournamentWithLoggedUser.cs" />
-    <Compile Include="Models\UsersInTournamentGroup.cs" />
+    <Compile Include="Models\GroupWithUsers.cs" />
     <Compile Include="Models\Team.cs" />
     <Compile Include="Models\TeamContext.cs" />
     <Compile Include="Models\Tournament.cs" />

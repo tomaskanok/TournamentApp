@@ -50,7 +50,7 @@ namespace TournamentApp.Controllers
             List<ApplicationUser> usersInGroup = new List<ApplicationUser>();
 
             var allUsers = new ApplicationDbContext();
-            List<UsersInTournamentGroup> allUsersInTournament = new List<UsersInTournamentGroup>();
+            List<GroupWithUsers> allUsersInTournament = new List<GroupWithUsers>();
 
             foreach (var regs in registrations)
             {
@@ -60,8 +60,13 @@ namespace TournamentApp.Controllers
                 }
             }
 
-            if (group.IdFinalFight == null)
-            {
+            if (group.ClosedRegistation == true)
+            { 
+                if (group.IdFinalFight == null)
+                {
+                    
+                }
+
 
             }
 
