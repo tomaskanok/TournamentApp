@@ -39,7 +39,7 @@ namespace TournamentApp.Controllers
             return View(group);
         }
 
-        public ActionResult Draw(int id)
+        public ActionResult Bracket(int id)
         {
             var groups = new GroupsContext();
             Groups group = groups.Groups.Single(x => x.Id == id);
@@ -67,7 +67,7 @@ namespace TournamentApp.Controllers
                     
                 }
 
-
+                //show
             }
 
             return View(group);            

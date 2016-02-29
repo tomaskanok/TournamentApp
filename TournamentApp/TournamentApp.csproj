@@ -312,7 +312,7 @@
     <Content Include="Views\Shared\DisplayTemplates\UrlBlank.cshtml" />
     <Content Include="Views\Group\Edit.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
-    <Content Include="Views\Group\Draw.cshtml" />
+    <Content Include="Views\Group\Bracket.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

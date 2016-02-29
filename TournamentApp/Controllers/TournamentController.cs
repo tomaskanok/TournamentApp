@@ -103,13 +103,28 @@ namespace TournamentApp.Controllers
 
             ViewBag.InTournament = CurrentUserInTournament(tournament.Id, currentUser);
 
-            var registrationContext = new RegistrationContext();
-            var reg = registrationContext.Registration.Single(r => r.UserId == currentUser && r.TournamentId == tournamentId);
-            ViewBag.Paid = reg.Paid;
+            ViewBag.Paid = DidPay(tournamentId, currentUser);
 
             ViewBag.IsAdmin = (currentUser == tournament.OrganizerId) ? true : false;
 
             return tournament;
+        }
+
+        private bool DidPay(int tournamentId, string currentUser)
+        {
+            var registrationContext = new RegistrationContext();
+
+            var isRegistred = registrationContext.Registration.Where(r => r.UserId == currentUser && r.TournamentId == tournamentId).ToList();
+
+            if (isRegistred.Count != 0)
+            {
+                var reg = registrationContext.Registration.Single(r => r.UserId == currentUser && r.TournamentId == tournamentId);
+                return reg.Paid;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private List<GroupWithUsers> AllUsersInTournament(int tournamentId, List<Groups> tournamentGroups)
